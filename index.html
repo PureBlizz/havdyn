@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Havdyn</title>
+  <!-- Poppins font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+	--blue-dark	: #1A4E5F;
+	--blue-light: #4A8CA8;
+	--green-dark: #3F5F47;
+	--green-light: #A1D0B0;
+    --gray-dark: #4A4D51;
+    --gray: #A0A4A7;
+    --gray-light: #EAECEC;
+    }
+    * { 
+      box-sizing: border-box; 
+      caret-color: transparent; /* Hide caret/cursor globally */
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--gray-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .placeholder-container {
+      background: white;
+      padding: 2rem;
+      max-width: 600px;
+      width: 90%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start; /* Align content to the top */
+      min-height: 450px; /* Set a minimum height */
+    }
+    .logo-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-grow: 1; /* Allow the logo and contact info to take available space */
+    }
+    .logo-bar h1 {
+      margin: 0;
+      display: inline-flex;
+      align-items: baseline;
+      font-weight: 800;
+      font-size: 4.5rem;
+      letter-spacing: 0.02em;
+      color: var(--gray-dark);
+      user-select: none;
+    }
+    .logo-bar .company-as {
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--blue-light);
+      margin-left: 0.3rem;
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .divider-container {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      margin-top: -0.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .divider {
+      height: 1.2px;
+      background-color: var(--blue-light);
+      flex-grow: 1; /* Make both dividers grow to fill space */
+    }
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: 0.75rem;
+      column-gap: 2rem;
+      font-size: 0.83rem;
+      color: var(--gray-dark);
+      margin-left: 0.4rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      min-width: 180px; /* Ensure container is wide enough */
+      min-height: 36px; /* Ensure container height is adequate for notification */
+      position: relative;
+    }
+    .copy-btn {
+      background: none;
+      border: none;
+      padding: 0.25rem;
+      margin-right: 0.5rem;
+      cursor: pointer;
+      line-height: 0;
+      color: var(--gray);
+      transition: color 0.15s ease;
+      flex-shrink: 0;
+    }
+    .copy-btn:hover { color: var(--blue-light); }
+    .copy-btn:focus { outline: 2px solid var(--blue-light); outline-offset: 2px; }
+    .copy-btn svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      stroke: currentColor;
+      fill: none;
+      margin-top: 0;
+    }
+    .text { user-select: text; }
+    .text .country-code { color: var(--gray); }
+
+    /* Notification container (Fixed Position) */
+    .notification-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Space between notifications */
+    }
+
+    /* Individual notification style */
+    .notification {
+      background-color: var(--blue-light);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-size: 0.85rem;
+      opacity: 0;
+      animation: fadeInOut 2s forwards; /* Animation for fading in and out */
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-10px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(10px); }
+    }
+    
+    .additional-text {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      color: var(--gray-dark);
+      font-size: 0.83rem;
+      text-align: left;
+      margin-top: 1.5rem;
+      padding-left: 0.6rem;
+    }
+
+    .legal {
+      font-size: 0.75rem;
+      color: var(--gray);
+      text-align: center;
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0; /* Remove all padding */
+      margin-top: auto; /* Pushes the legal text to the bottom */
+      margin-bottom: -0.8rem; /* Adds negative margin to pull the text closer to the bottom */
+    }
+
+    /* New divider style */
+    .new-divider {
+      height: 1.2px;
+      background-color: var(--blue-light);
+      margin-top: 0.8rem; /* Adjust the top margin as needed */
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="placeholder-container">
+    <div class="logo-bar">
+      <h1><span>Havdyn</span><span class="company-as">AS</span></h1>
+      <!-- Divider Container -->
+      <div class="divider-container">
+        <!-- Left Divider -->
+        <div class="divider" id="left-divider"></div>
+        <!-- Right Divider -->
+        <div class="divider" id="right-divider"></div>
+      </div>
+      
+      <div class="contact-info">
+        <!-- email -->
+        <div class="contact-item">
+          <button class="copy-btn" aria-label="Copy email">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0-2H3a2 2 0 00-2 2v8a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z"/>
+            </svg>
+          </button>
+          <div class="text" data-copy="post@havdyn.no">post@havdyn.no</div>
+        </div>
+        <!-- address -->
+        <div class="contact-item">
+          <button class="copy-btn" aria-label="Copy address">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 11a2 2 0 100-4 2 2 0 000 4z"/>
+            </svg>
+          </button>
+          <div class="text" data-copy="Synesvegen 416, 6040 Vigra">Synesvegen 416, 6040 Vigra</div>
+        </div>
+        <!-- phone -->
+        <div class="contact-item">
+          <button class="copy-btn" aria-label="Copy phone number">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2.25 6.75a2.25 2.25 0 012.25-2.25h3a.75.75 0 01.75.75v3a.75.75
+                0 01-.221.53l-2.98 2.98a16.044 16.044 0 006.992 6.992l2.98-2.98a.75.75
+                0 01.53-.22h3a.75.75 0 01.75.75v3a2.25 2.25 0 01-2.25 2.25h-1.5A19.5
+                19.5 0 012.25 6.75v-1.5z"/>
+            </svg>
+          </button>
+          <div class="text" data-copy="+4745201030"><span class="country-code">+47</span>&nbsp;45&nbsp;20&nbsp;10&nbsp;30</div>
+        </div>
+        <!-- org/MVA number -->
+        <div class="contact-item">
+          <button class="copy-btn" aria-label="Copy organization number">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 7a2 2 0 012-2h12a2 2 0 012 2v2H4V7zm0 5h16v7a2 2 0 01-2
+                2H6a2 2 0 01-2-2v-7zm8-3V5"/>
+            </svg>
+          </button>
+          <div class="text" data-copy="918894535">918&nbsp;894&nbsp;535&nbsp;MVA</div>
+        </div>
+      </div>
+      
+      <!-- New Divider Underneath Contact Info -->
+      <div class="new-divider"></div>
+
+      <!-- Additional text above the copyright -->
+      <div class="additional-text">
+        Havdyn er eid og drevet av Erlend Kvalsund. <br>Ta kontakt om det er noe jeg kan hjelpe deg med!
+      </div>
+
+      <div class="legal">© 2025 Havdyn AS</div>
+    </div>
+  </div>
+
+  <!-- Notification container for "Copied!" -->
+  <div class="notification-container"></div>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const txt = btn.nextElementSibling.getAttribute('data-copy');
+        navigator.clipboard.writeText(txt).then(() => {
+          const notif = document.createElement('div');
+          notif.className = 'notification';
+          notif.textContent = 'Copied!';
+          document.querySelector('.notification-container').appendChild(notif);
+
+          setTimeout(() => {
+            notif.remove();
+          }, 2000); // Notification disappears after 2 seconds
+        }).catch(err => console.error('Copy failed', err));
+      });
+    });
+  </script>
+</body>
+</html>
