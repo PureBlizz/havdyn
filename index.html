@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
   <title>Havdyn</title>
   <!-- Poppins font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -80,11 +81,20 @@
     .contact-info {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      row-gap: 0.75rem;
       column-gap: 2rem;
+      row-gap: 1rem;
       font-size: 0.83rem;
       color: var(--gray-dark);
       margin-left: 0.4rem;
+    }
+    .contact-group {
+      display: grid;
+      row-gap: 0.75rem;
+    }
+    @media (max-width: 480px) {
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
     }
     .contact-item {
       display: flex;
@@ -188,51 +198,55 @@
       </div>
       
       <div class="contact-info">
-        <!-- email -->
-        <div class="contact-item">
-          <button class="copy-btn" aria-label="Copy email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0-2H3a2 2 0 00-2 2v8a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z"/>
-            </svg>
-          </button>
-          <div class="text" data-copy="post@havdyn.no">post@havdyn.no</div>
+        <div class="contact-group">
+          <!-- email -->
+          <div class="contact-item">
+            <button class="copy-btn" aria-label="Copy email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0-2H3a2 2 0 00-2 2v8a2 2 0 002 2h18a2 2 0 002-2V8a2 2 0 00-2-2z"/>
+              </svg>
+            </button>
+            <div class="text" data-copy="post@havdyn.no">post@havdyn.no</div>
+          </div>
+          <!-- phone -->
+          <div class="contact-item">
+            <button class="copy-btn" aria-label="Copy phone number">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2.25 6.75a2.25 2.25 0 012.25-2.25h3a.75.75 0 01.75.75v3a.75.75
+                  0 01-.221.53l-2.98 2.98a16.044 16.044 0 006.992 6.992l2.98-2.98a.75.75
+                  0 01.53-.22h3a.75.75 0 01.75.75v3a2.25 2.25 0 01-2.25 2.25h-1.5A19.5
+                  19.5 0 012.25 6.75v-1.5z"/>
+              </svg>
+            </button>
+            <div class="text" data-copy="+4745201030"><span class="country-code">+47</span>&nbsp;45&nbsp;20&nbsp;10&nbsp;30</div>
+          </div>
         </div>
-        <!-- address -->
-        <div class="contact-item">
-          <button class="copy-btn" aria-label="Copy address">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 11a2 2 0 100-4 2 2 0 000 4z"/>
-            </svg>
-          </button>
-          <div class="text" data-copy="Synesvegen 416, 6040 Vigra">Synesvegen 416, 6040 Vigra</div>
-        </div>
-        <!-- phone -->
-        <div class="contact-item">
-          <button class="copy-btn" aria-label="Copy phone number">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M2.25 6.75a2.25 2.25 0 012.25-2.25h3a.75.75 0 01.75.75v3a.75.75
-                0 01-.221.53l-2.98 2.98a16.044 16.044 0 006.992 6.992l2.98-2.98a.75.75
-                0 01.53-.22h3a.75.75 0 01.75.75v3a2.25 2.25 0 01-2.25 2.25h-1.5A19.5
-                19.5 0 012.25 6.75v-1.5z"/>
-            </svg>
-          </button>
-          <div class="text" data-copy="+4745201030"><span class="country-code">+47</span>&nbsp;45&nbsp;20&nbsp;10&nbsp;30</div>
-        </div>
-        <!-- org/MVA number -->
-        <div class="contact-item">
-          <button class="copy-btn" aria-label="Copy organization number">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 7a2 2 0 012-2h12a2 2 0 012 2v2H4V7zm0 5h16v7a2 2 0 01-2
-                2H6a2 2 0 01-2-2v-7zm8-3V5"/>
-            </svg>
-          </button>
-          <div class="text" data-copy="918894535">918&nbsp;894&nbsp;535&nbsp;MVA</div>
+        <div class="contact-group">
+          <!-- address -->
+          <div class="contact-item">
+            <button class="copy-btn" aria-label="Copy address">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 11a2 2 0 100-4 2 2 0 000 4z"/>
+              </svg>
+            </button>
+            <div class="text" data-copy="Synesvegen 416, 6040 Vigra">Synesvegen 416, 6040 Vigra</div>
+          </div>
+          <!-- org/MVA number -->
+          <div class="contact-item">
+            <button class="copy-btn" aria-label="Copy organization number">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 7a2 2 0 012-2h12a2 2 0 012 2v2H4V7zm0 5h16v7a2 2 0 01-2
+                  2H6a2 2 0 01-2-2v-7zm8-3V5"/>
+              </svg>
+            </button>
+            <div class="text" data-copy="918894535">918&nbsp;894&nbsp;535&nbsp;MVA</div>
+          </div>
         </div>
       </div>
       
